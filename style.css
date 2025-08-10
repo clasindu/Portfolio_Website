@@ -187,12 +187,12 @@ section {
 }
 
 .profile_pic {
-    width: 300px;               
-    height: 300px;              
-    object-fit: cover;  
-    border-radius:50%;  
-               
+    width: min(60vw, 300px);   /* responsive: scales with viewport, max 300px */
+    height: min(60vw, 300px);  /* match height to width for a circle */
+    object-fit: cover;         /* crop nicely without distortion */
+    border-radius: 50%;        /* perfect circle */
 }
+
 
 
 
