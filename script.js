@@ -10,11 +10,9 @@ function toggleMenu() {
 const btn = document.getElementById("modeToggle");
 const btn2 = document.getElementById("modeToggle2");
 const themeIcons = document.querySelectorAll(".icon");
-const currentTheme = localStorage.getItem("theme");
 
-if (currentTheme === "dark") {
-  setDarkMode();
-}
+// Always start in dark mode, every time the page loads
+setDarkMode();
 
 btn.addEventListener("click", function () {
   setTheme();
@@ -25,18 +23,17 @@ btn2.addEventListener("click", function () {
 });
 
 function setTheme() {
-  let currentTheme = document.body.getAttribute("theme");
+  let activeTheme = document.body.getAttribute("theme");
 
-  if (currentTheme === "dark") {
-    setLightMode();
-  } else {
+  if (activeTheme === "light") {
     setDarkMode();
+  } else {
+    setLightMode();
   }
 }
 
 function setDarkMode() {
-  document.body.setAttribute("theme", "dark");
-  localStorage.setItem("theme", "dark");
+  document.body.removeAttribute("theme");
 
   themeIcons.forEach((icon) => {
     icon.src = icon.getAttribute("src-dark");
@@ -44,8 +41,7 @@ function setDarkMode() {
 }
 
 function setLightMode() {
-  document.body.removeAttribute("theme");
-  localStorage.setItem("theme", "light");
+  document.body.setAttribute("theme", "light");
 
   themeIcons.forEach((icon) => {
     icon.src = icon.getAttribute("src-light");
